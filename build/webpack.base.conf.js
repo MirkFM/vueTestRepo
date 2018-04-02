@@ -47,6 +47,13 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
+        test: /\.pug/,
+        loader: [
+          'html-loader',
+          'pug-loader?sourceMap'
+        ]
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
