@@ -26,10 +26,6 @@
         a(href="http://vue-loader.vuejs.org/" target="_blank") vue-loader
       li
         a(href="https://github.com/vuejs/awesome-vue" target="_blank") awesome-vue
-
-    +b.OL.b-list
-      - for (let i = 0; i < 10; i++)
-        +e.LI.item(style="text-align: left;")= 'item ' + i
 </template>
 
 <script>
