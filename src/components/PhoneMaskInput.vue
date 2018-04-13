@@ -11,7 +11,7 @@
     ]"
     :guide="true"
     placeholder="Телефон"
-    placeholderChar="\u2000">
+    placeholderChar="X">
   </masked-input>
 </template>
 

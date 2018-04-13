@@ -2,16 +2,15 @@
   <masked-input
     name="expdate"
     v-model="value"
-    :mask="[/\d/, /\d/, ' ', '\/', ' ', /\d/, /\d/]"
+    :mask=mask
     :guide="true"
-    :pipe=autoCorrectedDatePipe
     placeholderChar="X">
   </masked-input>
 </template>
 
 <script>
 import MaskedInput from 'vue-text-mask';
-import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
+import EmailMask from 'text-mask-addons/dist/emailMask';
 
 export default {
   name: 'ExpDateMaskInput',
@@ -23,7 +22,7 @@ export default {
   data() {
     return {
       value: '',
-      autoCorrectedDatePipe: createAutoCorrectedDatePipe('dd / yy'),
+      mask: EmailMask,
     };
   },
 };

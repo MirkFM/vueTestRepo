@@ -62,7 +62,12 @@
             </div>
           </div>
           <div class="s-form__field email">
-            <input class="s-form__input" type="mail" value="" placeholder="E-mail" />
+            <email
+              placeholder="E-mail"
+              name="email"
+              class="s-form__input"
+            />
+            <!-- <input class="s-form__input" type="mail" value="" placeholder="E-mail" /> -->
             <div class="s-form__hint">
               <div class="s-form__hint-text">
                 <div class="s-form__hint-help">Текст подсказки для поля</div>
@@ -107,6 +112,7 @@ import PhoneMaskInput from './PhoneMaskInput';
 import CardNumber from './CardNumberMaskInput';
 import Cvc from './CvcMaskInput';
 import ExpDate from './ExpDateMaskInput';
+import Email from './EmailMaskInput';
 
 
 export default {
@@ -117,6 +123,7 @@ export default {
     CardNumber,
     Cvc,
     ExpDate,
+    Email,
   },
 
   data() {
