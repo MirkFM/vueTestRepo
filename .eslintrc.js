@@ -25,6 +25,7 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    'linebreak-style': 0,
     'max-len': [2, { "code": 800 }],
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
@@ -41,6 +42,7 @@ module.exports = {
         'e' // for e.returnvalue
       ]
     }],
+    'no-console': 0,
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
       optionalDependencies: ['test/unit/index.js']
