@@ -5,8 +5,10 @@
     :mask="[/\d/, /\d/, ' ', '\/', ' ', /\d/, /\d/]"
     :guide="true"
     :pipe=autoCorrectedDatePipe
-    placeholderChar="X">
-  </masked-input>
+    placeholderChar="X"
+    @focus.native="handleFocus"
+    @blur.native="handleBlur"
+  />
 </template>
 
 <script>
@@ -25,6 +27,21 @@ export default {
       value: '',
       autoCorrectedDatePipe: createAutoCorrectedDatePipe('dd / yy'),
     };
+  },
+
+  methods: {
+    handleFocus() {
+      this.$emit('focus');
+    },
+    handleBlur() {
+      this.$emit('blur');
+
+      if (this.$data.value === '') {
+        this.$emit('error');
+      } else {
+        this.$emit('valid');
+      }
+    },
   },
 };
 </script>

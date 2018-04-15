@@ -2,6 +2,8 @@
   <the-mask
     :mask=mask
     v-model=value
+    @focus.native="handleFocus"
+    @blur.native="handleBlur"
   />
 </template>
 
@@ -21,6 +23,7 @@ export default {
       paymentSystem: 'maestro',
     };
   },
+
   computed: {
     mask() {
       if (this.paymentSystem === 'maestro') {
@@ -28,6 +31,21 @@ export default {
       }
 
       return ['###'];
+    },
+  },
+
+  methods: {
+    handleFocus() {
+      this.$emit('focus');
+    },
+    handleBlur() {
+      this.$emit('blur');
+
+      if (this.$data.value === '') {
+        this.$emit('error');
+      } else {
+        this.$emit('valid');
+      }
     },
   },
 };

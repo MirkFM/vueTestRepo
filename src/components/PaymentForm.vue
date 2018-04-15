@@ -9,11 +9,19 @@
           <div class="s-form__sum-border"></div>
         </div>
         <form class="s-form__form">
-          <div class="s-form__field cardnumber">
+          <div class="s-form__field cardnumber" :class="[{
+            focus: cardnumber.focused === true,
+            valid: cardnumber.valid === true,
+            error: cardnumber.valid === false,
+          }]">
             <card-number
               placeholder="Номер карты"
               name="cardnumber"
               class="s-form__input"
+              @focus="cardnumber.focused = true"
+              @blur="cardnumber.focused = false"
+              @valid="cardnumber.valid = true"
+              @error="cardnumber.valid = false"
             />
 
             <div class="s-form__hint">
@@ -24,10 +32,19 @@
             </div>
           </div>
           <div class="s-form__field-group">
-            <div class="s-form__field expdate">
+            <div class="s-form__field expdate" :class="[{
+              focus: expdate.focused === true,
+              valid: expdate.valid === true,
+              error: expdate.valid === false,
+            }]">
               <exp-date
                 class="s-form__input"
+                name="expdate"
                 placeholder="ММ / ГГ"
+                @focus="expdate.focused = true"
+                @blur="expdate.focused = false"
+                @valid="expdate.valid = true"
+                @error="expdate.valid = false"
               />
               <div class="s-form__hint">
                 <div class="s-form__hint-text">
@@ -36,11 +53,19 @@
                 </div>
               </div>
             </div>
-            <div class="s-form__field cvc">
+            <div class="s-form__field cvc" :class="[{
+              focus: cvc.focused === true,
+              valid: cvc.valid === true,
+              error: cvc.valid === false,
+            }]">
               <cvc
                 placeholder="Cvc"
                 name="cvc"
                 class="s-form__input"
+                @focus="cvc.focused = true"
+                @blur="cvc.focused = false"
+                @valid="cvc.valid = true"
+                @error="cvc.valid = false"
               />
 
               <div class="s-form__hint">
@@ -61,13 +86,20 @@
               </div>
             </div>
           </div>
-          <div class="s-form__field email">
+          <div class="s-form__field email" :class="[{
+            focus: email.focused === true,
+            valid: email.valid === true,
+            error: email.valid === false,
+          }]">
             <email
               placeholder="E-mail"
               name="email"
               class="s-form__input"
+              @focus="email.focused = true"
+              @blur="email.focused = false"
+              @valid="email.valid = true"
+              @error="email.valid = false"
             />
-            <!-- <input class="s-form__input" type="mail" value="" placeholder="E-mail" /> -->
             <div class="s-form__hint">
               <div class="s-form__hint-text">
                 <div class="s-form__hint-help">Текст подсказки для поля</div>
@@ -75,8 +107,20 @@
               </div>
             </div>
           </div>
-          <div class="s-form__field phone">
-            <phone-mask-input></phone-mask-input>
+          <div class="s-form__field phone" :class="[{
+            focus: phone.focused === true,
+            valid: phone.valid === true,
+            error: phone.valid === false,
+          }]">
+            <phone
+              placeholder="Телефон"
+              name="phone"
+              class="s-form__input"
+              @focus="phone.focused = true"
+              @blur="phone.focused = false"
+              @valid="phone.valid = true"
+              @error="phone.valid = false"
+            />
 
             <div class="s-form__hint">
               <div class="s-form__hint-text">
@@ -108,7 +152,7 @@
 </template>
 
 <script>
-import PhoneMaskInput from './PhoneMaskInput';
+import Phone from './PhoneMaskInput';
 import CardNumber from './CardNumberMaskInput';
 import Cvc from './CvcMaskInput';
 import ExpDate from './ExpDateMaskInput';
@@ -119,7 +163,7 @@ export default {
   name: 'PaymentForm',
 
   components: {
-    PhoneMaskInput,
+    Phone,
     CardNumber,
     Cvc,
     ExpDate,
@@ -128,16 +172,48 @@ export default {
 
   data() {
     return {
-      form: {
-        cardnumber: '',
-        expdate: '',
-        cvc: '',
-        cardholder: '',
-        email: '',
-        phone: '',
-        city: '',
+      cardnumber: {
+        value: '',
+        valid: null,
+        focused: true,
+      },
+      expdate: {
+        value: '',
+        valid: null,
+        focused: false,
+      },
+      cvc: {
+        value: '',
+        valid: null,
+        focused: false,
+      },
+      cardholder: {
+        value: '',
+        valid: null,
+        focused: false,
+      },
+      email: {
+        value: '',
+        valid: null,
+        focused: false,
+      },
+      phone: {
+        value: '',
+        valid: null,
+        focused: false,
+      },
+      city: {
+        value: '',
+        valid: null,
+        focused: false,
       },
     };
+  },
+
+  mounted() {
+    this.$on('focus', (flag) => {
+      console.log('focus', flag);
+    });
   },
 };
 </script>

@@ -3,7 +3,7 @@
     type="text"
     name="phone"
     class="s-form__input"
-    v-model="phone"
+    v-model=value
     :mask="[
       '+', '7', ' ',
       '(', /[1-9]/, /\d/, /\d/, ')', ' ',
@@ -11,8 +11,10 @@
     ]"
     :guide="true"
     placeholder="Телефон"
-    placeholderChar="X">
-  </masked-input>
+    placeholderChar="X"
+    @focus.native="handleFocus"
+    @blur.native="handleBlur"
+  />
 </template>
 
 <script>
@@ -27,8 +29,23 @@ export default {
 
   data() {
     return {
-      phone: '',
+      value: '',
     };
+  },
+
+  methods: {
+    handleFocus() {
+      this.$emit('focus');
+    },
+    handleBlur() {
+      this.$emit('blur');
+
+      if (this.$data.value === '') {
+        this.$emit('error');
+      } else {
+        this.$emit('valid');
+      }
+    },
   },
 };
 </script>
