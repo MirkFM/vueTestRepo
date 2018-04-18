@@ -15,7 +15,7 @@ import MaskedInput from 'vue-text-mask';
 import EmailMask from 'text-mask-addons/dist/emailMask';
 
 export default {
-  name: 'ExpDateMaskInput',
+  name: 'EmailMaskInput',
 
   components: {
     MaskedInput,

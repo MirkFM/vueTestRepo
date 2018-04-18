@@ -1,7 +1,8 @@
 <template>
   <the-mask
-    :mask=mask
     v-model=value
+    :mask=mask
+    :tokens=tokens
     @focus.native="handleFocus"
     @blur.native="handleBlur"
   />
@@ -11,7 +12,7 @@
 import { TheMask } from 'vue-the-mask';
 
 export default {
-  name: 'CvcMaskInput',
+  name: 'CityMaskInput',
 
   components: {
     TheMask,
@@ -20,17 +21,18 @@ export default {
   data() {
     return {
       value: '',
-      paymentSystem: '',
     };
   },
 
   computed: {
     mask() {
-      if (this.paymentSystem === 'maestro') {
-        return ['###', '####'];
-      }
+      const N = Number(this.$data.value.length) + 2;
 
-      return ['###'];
+      return Array(N).join('B');
+    },
+
+    tokens() {
+      return { B: { pattern: /[-a-zA-Zа-яА-Я ]/ } };
     },
   },
 

@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       value: '',
-      paymentSystem: 'visa',
+      paymentSystem: '',
     };
   },
 
@@ -48,6 +48,5 @@ export default {
       }
     },
   },
-
 };
 </script>

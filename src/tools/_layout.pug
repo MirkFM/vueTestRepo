@@ -1,0 +1,33 @@
+include ./mixins.pug
+
+.container
+  +b.s-header
+    .wrapper
+      .wrap-in
+        +e.A.button(href="javascript:void(0);")
+        +e.logo
+          +e.circle.blue
+          +e.circle.red
+          +e.circle.violet
+          +e.circle.green
+
+  +b.s-form
+    .wrapper
+      .wrap-in
+        +e.title= data("form.title")
+        +e.order= data("form.order.title")
+        +e.sum
+          +e.A.sum-total= data("form.order.sum")
+          +e.sum-border
+
+        block content
+
+  +b.s-footer
+    .wrapper
+      .wrap-in
+        +e.icons
+          +e.icon.icon1
+          +e.icon.icon2
+          +e.icon.icon3
+          +e.icon.icon4
+        +e.privacy-policy!= 'Нажимая &laquo;Оплатить&raquo;, вы&nbsp;безусловно соглашаетесь<br />с&nbsp;<a href="javascript:void(0)">политикой конфиденциальности</a>.'

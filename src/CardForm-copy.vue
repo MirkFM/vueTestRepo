@@ -152,15 +152,15 @@
 </template>
 
 <script>
-import Phone from './PhoneMaskInput';
-import CardNumber from './CardNumberMaskInput';
-import Cvc from './CvcMaskInput';
-import ExpDate from './ExpDateMaskInput';
-import Email from './EmailMaskInput';
+import Phone from './components/PhoneMaskInput';
+import CardNumber from './components/CardNumberMaskInput';
+import Cvc from './components/CvcMaskInput';
+import ExpDate from './components/ExpDateMaskInput';
+import Email from './components/EmailMaskInput';
 
 
 export default {
-  name: 'PaymentForm',
+  name: 'CardForm',
 
   components: {
     Phone,
