@@ -1,16 +1,8 @@
 <template>
   <masked-input
-    type="text"
-    name="phone"
-    class="s-form__input"
-    v-model=value
-    :mask="[
-      '+', '7', ' ',
-      '(', /[1-9]/, /\d/, /\d/, ')', ' ',
-      /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/
-    ]"
+    v-model="value"
+    :mask="mask"
     :guide="true"
-    placeholder="Телефон"
     placeholderChar="X"
     @focus.native="handleFocus"
     @blur.native="handleBlur"
@@ -45,6 +37,22 @@ export default {
       } else {
         this.$emit('valid');
       }
+    },
+    mask(rawValue) {
+      const startSymbolPosition = rawValue.search(/[+1-9]/);
+      const startSymbol = rawValue[startSymbolPosition];
+
+      if (startSymbol === '8') {
+        return ['8', ' ',
+          '(', /[1-9]/, /\d/, /\d/, ')', ' ',
+          /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/,
+        ];
+      }
+
+      return ['+', /[1-7]/, ' ',
+        '(', /[1-9]/, /\d/, /\d/, ')', ' ',
+        /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/,
+      ];
     },
   },
 };

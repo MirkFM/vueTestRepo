@@ -1,36 +1,47 @@
 <template>
-  <the-mask
-    :mask=mask
-    v-model=value
+  <masked-input
+    v-model="value"
+    :mask="mask"
+    :guide="true"
+    placeholderChar="X"
     @focus.native="handleFocus"
     @blur.native="handleBlur"
   />
 </template>
 
 <script>
-import { TheMask } from 'vue-the-mask';
+import MaskedInput from 'vue-text-mask';
 
 export default {
   name: 'CardNumberMaskInput',
 
   components: {
-    TheMask,
+    MaskedInput,
   },
 
   data() {
     return {
       value: '',
-      paymentSystem: '',
+      paymentSystem: 'amex',
     };
   },
 
   computed: {
     mask() {
-      if (this.paymentSystem === 'visa') {
-        return ['#### #### #### ####', '#### #### #### #### #', '#### #### #### #### ##', '#### #### #### #### ###'];
+      if (this.paymentSystem === 'amex') {
+        return [
+          /\d/, /\d/, /\d/, /\d/, ' ',
+          /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, ' ',
+          /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,
+        ];
       }
 
-      return ['#### #### #### ####'];
+      return [
+        /\d/, /\d/, /\d/, /\d/, ' ',
+        /\d/, /\d/, /\d/, /\d/, ' ',
+        /\d/, /\d/, /\d/, /\d/, ' ',
+        /\d/, /\d/, /\d/, /\d/,
+      ];
     },
   },
 

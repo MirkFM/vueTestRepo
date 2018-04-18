@@ -1,8 +1,7 @@
 <template>
   <masked-input
-    name="expdate"
     v-model="value"
-    :mask=mask
+    :mask="mask"
     :guide="true"
     placeholderChar="X"
     @focus.native="handleFocus"

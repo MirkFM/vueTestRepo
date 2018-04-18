@@ -1,20 +1,22 @@
 <template>
-  <the-mask
-    :mask=mask
-    v-model=value
+  <masked-input
+    v-model="value"
+    :mask="mask"
+    :guide="true"
+    placeholderChar="X"
     @focus.native="handleFocus"
     @blur.native="handleBlur"
   />
 </template>
 
 <script>
-import { TheMask } from 'vue-the-mask';
+import MaskedInput from 'vue-text-mask';
 
 export default {
   name: 'CvcMaskInput',
 
   components: {
-    TheMask,
+    MaskedInput,
   },
 
   data() {
@@ -27,10 +29,14 @@ export default {
   computed: {
     mask() {
       if (this.paymentSystem === 'maestro') {
-        return ['###', '####'];
+        return [
+          /\d/, /\d/, /\d/, /\d/,
+        ];
       }
 
-      return ['###'];
+      return [
+        /\d/, /\d/, /\d/,
+      ];
     },
   },
 
@@ -40,6 +46,8 @@ export default {
     },
     handleBlur() {
       this.$emit('blur');
+
+      console.log(this.$data.value);
 
       if (this.$data.value === '') {
         this.$emit('error');
